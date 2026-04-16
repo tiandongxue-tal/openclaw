@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密友详情 - Figma 还原</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* 页面容器 - 精确尺寸 812x375 */
+        .page-container {
+            width: 812px;
+            height: 375px;
+            background: linear-gradient(180deg, #023153 0%, #0d4a7c 50%, #1a5c99 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        /* 背景装饰图 */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        
+        /* 返回按钮 */
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 17px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .back-btn::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-left: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: rotate(45deg);
+        }
+        
+        /* 标题 */
+        .title {
+            position: absolute;
+            left: 59px;
+            top: 20px;
+            color: #ffffff;
+            font-size: 12px;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+            font-weight: 600;
+            z-index: 100;
+        }
+        
+        /* 左侧角色 - 使用真实图片 */
+        .character-left {
+            position: absolute;
+            left: 60px;
+            top: 50px;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .character-avatar-left {
+            width: 140px;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .vip-badge-left {
+            position: absolute;
+            left: -5px;
+            top: -5px;
+            width: 30px;
+            height: 15px;
+            background: url('figma_images/84991ff1f5f1b17d031d91b33899ca2db00cf27c.png') no-repeat center;
+            background-size: contain;
+            z-index: 20;
+        }
+        
+        .character-name-left {
+            color: #B27B17;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+        }
+        
+        /* 右侧角色 */
+        .character-right {
+            position: absolute;
+            left: 210px;
+            top: 50px;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .character-avatar-right {
+            width: 140px;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .vip-badge-right {
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            width: 35px;
+            height: 18px;
+            background: url('figma_images/1d2a2ca8a9543b7db7b55c2a3106ac20b586466b.png') no-repeat center;
+            background-size: contain;
+            z-index: 20;
+        }
+        
+        .character-name-right {
+            color: #C63BB1;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: "PingFangSC-Semibold", "PingFang SC", sans-serif;
+        }
+        
+        /* 亲密度展示区 */
+        .intimacy-section {
+            position: absolute;
+            left: 380px;
+            top: 60px;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .intimacy-level {
+            font-size: 32px;
+            color: #ffffff;
+            font-weight: 700;
+            font-family: "PingFangSC-Semibold", "PingFang SC", sans-serif;
+            line-height: 1;
+        }
+        
+        .relationship-tag {
+            margin-top: 4px;
+            font-size: 10px;
+            color: #E559E5;
+            font-weight: 600;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+        }
+        
+        .relationship-en {
+            font-size: 10px;
+            color: #E559E5;
+            font-weight: 400;
+            font-family: "FZLanTingYuanS-DB-GB", "PingFang SC", sans-serif;
+        }
+        
+        /* 角色名 */
+        .role-name-left {
+            position: absolute;
+            left: 534px;
+            top: 110px;
+            color: #A75E0F;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+        }
+        
+        .role-name-right {
+            position: absolute;
+            left: 681px;
+            top: 110px;
+            color: #A75E0F;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+        }
+        
+        /* 数值 */
+        .number-1245 {
+            position: absolute;
+            left: 635px;
+            top: 115px;
+            color: #333333;
+            font-size: 9px;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+        }
+        
+        /* Tab 区域 */
+        .tab-section {
+            position: absolute;
+            left: 559px;
+            top: 147px;
+            display: flex;
+            gap: 30px;
+            z-index: 10;
+        }
+        
+        .tab-item {
+            font-size: 12px;
+            cursor: pointer;
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-active {
+            color: #622E00;
+            font-weight: 700;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+            border-bottom: 2px solid #622E00;
+        }
+        
+        .tab-inactive {
+            color: #999999;
+            font-weight: 400;
+            font-family: "FZLanTingYuanS-DB-GB", "PingFang SC", sans-serif;
+        }
+        
+        /* 任务列表区域 */
+        .task-section {
+            position: absolute;
+            left: 537px;
+            top: 190px;
+            width: 250px;
+            z-index: 10;
+        }
+        
+        .task-title {
+            color: #666666;
+            font-size: 11px;
+            font-family: "PingFangSC-Regular", "PingFang SC", sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(240, 247, 255, 0.95);
+            border-radius: 8px;
+            border-left: 3px solid #0078e9;
+            margin-bottom: 6px;
+        }
+        
+        .task-description {
+            color: #333333;
+            font-size: 12px;
+            font-family: "PingFangSC-Regular", "PingFang SC", sans-serif;
+        }
+        
+        .task-action {
+            color: #033658;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: "FZLanTingYuanS-B-GB", "PingFang SC", sans-serif;
+            cursor: pointer;
+        }
+        
+        /* 星星装饰 */
+        .star {
+            position: absolute;
+            z-index: 5;
+        }
+        
+        .star-1 {
+            left: 490px;
+            top: 50px;
+            width: 39px;
+            height: 48px;
+            background: url('figma_images/84991ff1f5f1b17d031d91b33899ca2db00cf27c.png') no-repeat center;
+            background-size: contain;
+        }
+        
+        .star-2 {
+            left: 753px;
+            top: 40px;
+            width: 34px;
+            height: 41px;
+            background: url('figma_images/84991ff1f5f1b17d031d91b33899ca2db00cf27c.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.8;
+        }
+        
+        .star-3 {
+            left: 738px;
+            top: 240px;
+            width: 34px;
+            height: 41px;
+            background: url('figma_images/84991ff1f5f1b17d031d91b33899ca2db00cf27c.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.8;
+        }
+        
+        .star-4 {
+            left: 507px;
+            top: 240px;
+            width: 34px;
+            height: 41px;
+            background: url('figma_images/84991ff1f5f1b17d031d91b33899ca2db00cf27c.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.5;
+            filter: blur(1px);
+        }
+        
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .deco-1 {
+            left: 400px;
+            top: 180px;
+            width: 100px;
+            height: 100px;
+            background: url('figma_images/35260ea281f5852b234acd097d53544f251ee9a9.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.6;
+        }
+        
+        .deco-2 {
+            left: 200px;
+            top: 250px;
+            width: 60px;
+            height: 60px;
+            background: url('figma_images/76a59ee8eee316ccd0f6c1598ae90da0cd8636d2.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.4;
+        }
+        
+        /* 完整页面导出图 */
+        .page-export {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        /* 角色图片 */
+        .char-img-1 {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 850px) {
+            .page-container {
+                transform: scale(0.9);
+            }
+        }
+        
+        @media (max-width: 750px) {
+            .page-container {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- 使用页面导出图作为完整背景 -->
+        <img src="figma_images/page_export.png" class="page-export" alt="密友详情页面">
+        
+        <!-- 交互层 -->
+        <div class="back-btn">返回</div>
+        <div class="title">亲密关系</div>
+        
+        <!-- 星星装饰 -->
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+    </div>
+</body>
+</html>
