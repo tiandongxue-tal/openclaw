@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>听音看图选词 - Figma 还原</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* 页面容器 - 精确尺寸 812x375 */
+        .page-container {
+            width: 812px;
+            height: 375px;
+            background: #fff;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        /* 完整页面导出图作为背景 */
+        .page-export {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        /* 交互层 */
+        .interaction-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .interactive {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        
+        /* 返回按钮 */
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .back-btn::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid #333;
+            border-bottom: 2px solid #333;
+            transform: rotate(45deg);
+        }
+        
+        /* 标题 */
+        .title {
+            position: absolute;
+            left: 50%;
+            top: 15px;
+            transform: translateX(-50%);
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 850px) {
+            .page-container {
+                transform: scale(0.9);
+            }
+        }
+        
+        @media (max-width: 750px) {
+            .page-container {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- 页面导出图 - 像素级还原 -->
+        <img src="figma_images_听音看图选词/page_export.png" class="page-export" alt="听音看图选词页面">
+        
+        <!-- 交互层 -->
+        <div class="interaction-layer">
+            <div class="back-btn interactive">返回</div>
+            <div class="title">听音看图选词</div>
+        </div>
+    </div>
+</body>
+</html>
