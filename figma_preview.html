@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密友详情 - Figma 设计稿</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #023153 0%, #0078e9 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h3 {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .info-card p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .design-system {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #0078e9;
+            padding-bottom: 10px;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .color-item {
+            text-align: center;
+        }
+        
+        .color-box {
+            width: 100%;
+            height: 60px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .color-code {
+            font-size: 12px;
+            color: #666;
+            font-family: monospace;
+        }
+        
+        .text-elements {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .text-item {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #0078e9;
+        }
+        
+        .text-item .content {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .text-item .meta {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .font-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .font-tag {
+            background: #e3f2fd;
+            color: #0078e9;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .preview-area {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 40px;
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        
+        .preview-title {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .mockup-container {
+            position: relative;
+            width: 812px;
+            height: 375px;
+            background: linear-gradient(180deg, #023153 0%, #0d4a7c 50%, #1a5c99 100%);
+            border-radius: 20px;
+            transform: scale(0.5);
+            transform-origin: top left;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .text-0 {
+            position: absolute;
+            left: 59.0px;
+            top: 20.0px;
+            font-size: 12.0px;
+            color: rgb(255,255,255);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-1 {
+            position: absolute;
+            left: 331.0px;
+            top: 333.0px;
+            font-size: 12.0px;
+            color: rgb(198,59,177);
+            font-family: "PingFangSC-Semibold", sans-serif;
+        }
+        .text-2 {
+            position: absolute;
+            left: 304.5px;
+            top: 334.5px;
+            font-size: 7.3px;
+            color: rgb(255,255,255);
+            font-family: "FZLTTHK--GBK1-0", sans-serif;
+        }
+        .text-3 {
+            position: absolute;
+            left: 106.0px;
+            top: 335.0px;
+            font-size: 8.0px;
+            color: rgb(255,255,255);
+            font-family: "FZLTTHK--GBK1-0", sans-serif;
+        }
+        .text-4 {
+            position: absolute;
+            left: 129.0px;
+            top: 333.0px;
+            font-size: 12.0px;
+            color: rgb(178,103,23);
+            font-family: "PingFangSC-Semibold", sans-serif;
+        }
+        .text-5 {
+            position: absolute;
+            left: 637.0px;
+            top: 83.0px;
+            font-size: 12.0px;
+            color: rgb(255,255,255);
+            font-family: "PingFangSC-Semibold", sans-serif;
+        }
+        .text-6 {
+            position: absolute;
+            left: 657.0px;
+            top: 96.0px;
+            font-size: 10.0px;
+            color: rgb(229,89,229);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-7 {
+            position: absolute;
+            left: 627.0px;
+            top: 96.0px;
+            font-size: 10.0px;
+            color: rgb(229,89,229);
+            font-family: "FZLANTY_DAJW--GB1-0", sans-serif;
+        }
+        .text-8 {
+            position: absolute;
+            left: 549.0px;
+            top: 110.0px;
+            font-size: 10.0px;
+            color: rgb(167,94,15);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-9 {
+            position: absolute;
+            left: 696.0px;
+            top: 110.0px;
+            font-size: 10.0px;
+            color: rgb(167,94,15);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-10 {
+            position: absolute;
+            left: 650.0px;
+            top: 115.0px;
+            font-size: 9.0px;
+            color: rgb(51,51,51);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-11 {
+            position: absolute;
+            left: 574.0px;
+            top: 147.0px;
+            font-size: 12.0px;
+            color: rgb(98,46,0);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-12 {
+            position: absolute;
+            left: 682.0px;
+            top: 147.0px;
+            font-size: 12.0px;
+            color: rgb(153,153,153);
+            font-family: "FZLANTY_ZHONGJW--GB1-0", sans-serif;
+        }
+        .text-13 {
+            position: absolute;
+            left: 586.0px;
+            top: 201.0px;
+            font-size: 12.0px;
+            color: rgb(102,102,102);
+            font-family: "PingFangSC-Regular", sans-serif;
+        }
+        .text-14 {
+            position: absolute;
+            left: 552.0px;
+            top: 228.0px;
+            font-size: 12.0px;
+            color: rgb(51,51,51);
+            font-family: "PingFangSC-Regular", sans-serif;
+        }
+        .text-15 {
+            position: absolute;
+            left: 717.7px;
+            top: 226.7px;
+            font-size: 12.0px;
+            color: rgb(3,54,88);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-16 {
+            position: absolute;
+            left: 552.0px;
+            top: 260.0px;
+            font-size: 12.0px;
+            color: rgb(51,51,51);
+            font-family: "PingFangSC-Regular", sans-serif;
+        }
+        .text-17 {
+            position: absolute;
+            left: 717.7px;
+            top: 258.7px;
+            font-size: 12.0px;
+            color: rgb(3,54,88);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+        .text-18 {
+            position: absolute;
+            left: 552.0px;
+            top: 292.0px;
+            font-size: 12.0px;
+            color: rgb(51,51,51);
+            font-family: "PingFangSC-Regular", sans-serif;
+        }
+        .text-19 {
+            position: absolute;
+            left: 717.7px;
+            top: 290.7px;
+            font-size: 12.0px;
+            color: rgb(3,54,88);
+            font-family: "FZLANTY_CUJW--GB1-0", sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 密友详情页面</h1>
+            <p>Figma 设计稿解析 | 节点 ID: 15556-19842</p>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>页面尺寸</h3>
+                <p>812 × 375 px</p>
+            </div>
+            <div class="info-card">
+                <h3>元素总数</h3>
+                <p>6,053 个</p>
+            </div>
+            <div class="info-card">
+                <h3>渐变效果</h3>
+                <p>1,157 处</p>
+            </div>
+            <div class="info-card">
+                <h3>图片资源</h3>
+                <p>95 个</p>
+            </div>
+        </div>
+        
+        <div class="design-system">
+            <h2 class="section-title">🌈 主要颜色</h2>
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-box" style="background: #023153;"></div>
+                    <div class="color-code">#023153</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #0078e9;"></div>
+                    <div class="color-code">#0078e9</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #22c6e1;"></div>
+                    <div class="color-code">#22c6e1</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #232435;"></div>
+                    <div class="color-code">#232435</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #333333;"></div>
+                    <div class="color-code">#333333</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-box" style="background: #3aaee4;"></div>
+                    <div class="color-code">#3aaee4</div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">🔤 字体系统</h2>
+            <div class="font-list">
+                <span class="font-tag">兰亭圆粗体 12px</span>
+                <span class="font-tag">兰亭圆大 10px</span>
+                <span class="font-tag">兰亭圆中 12px</span>
+                <span class="font-tag">兰亭黑 8px</span>
+                <span class="font-tag">苹方 Regular 12px</span>
+                <span class="font-tag">苹方 Semibold 12px</span>
+            </div>
+            
+            <h2 class="section-title">📝 主要文本内容</h2>
+            <div class="text-elements">
+
+                <div class="text-item">
+                    <div class="content">"亲密关系"</div>
+                    <div class="meta">FZLANTY_CUJW--GB1-0 12px | 位置: (59, 20)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"用户昵称用户昵称"</div>
+                    <div class="meta">PingFangSC-Semibold 12px | 位置: (331, 333)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"SVIP"</div>
+                    <div class="meta">FZLTTHK--GBK1-0 7px | 位置: (304, 334)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"VIP"</div>
+                    <div class="meta">FZLTTHK--GBK1-0 8px | 位置: (106, 335)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"用户昵称用户昵称"</div>
+                    <div class="meta">PingFangSC-Semibold 12px | 位置: (129, 333)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"12"</div>
+                    <div class="meta">PingFangSC-Semibold 12px | 位置: (637, 83)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"姐妹"</div>
+                    <div class="meta">FZLANTY_CUJW--GB1-0 10px | 位置: (657, 96)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"Sister"</div>
+                    <div class="meta">FZLANTY_DAJW--GB1-0 10px | 位置: (627, 96)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"贝吉塔王子"</div>
+                    <div class="meta">FZLANTY_CUJW--GB1-0 10px | 位置: (549, 110)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"松鼠的大尾巴..."</div>
+                    <div class="meta">FZLANTY_CUJW--GB1-0 10px | 位置: (696, 110)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"1245"</div>
+                    <div class="meta">FZLANTY_CUJW--GB1-0 9px | 位置: (650, 115)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"密友关系"</div>
+                    <div class="meta">FZLANTY_CUJW--GB1-0 12px | 位置: (574, 147)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"密友记录"</div>
+                    <div class="meta">FZLANTY_ZHONGJW--GB1-0 12px | 位置: (682, 147)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"通过以下途径提升亲密度"</div>
+                    <div class="meta">PingFangSC-Regular 12px | 位置: (586, 201)</div>
+                </div>
+
+                <div class="text-item">
+                    <div class="content">"发送学习鼓励"</div>
+                    <div class="meta">PingFangSC-Regular 12px | 位置: (552, 228)</div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="preview-area">
+            <div class="preview-title">📱 页面预览结构</div>
+            <div class="mockup-container">
+                <div class="text-0">亲密关系</div>
+                <div class="text-1">用户昵称用户昵称</div>
+                <div class="text-2">SVIP</div>
+                <div class="text-3">VIP</div>
+                <div class="text-4">用户昵称用户昵称</div>
+                <div class="text-5">12</div>
+                <div class="text-6">姐妹</div>
+                <div class="text-7">Sister</div>
+                <div class="text-8">贝吉塔王子</div>
+                <div class="text-9">松鼠的大尾巴...</div>
+                <div class="text-10">1245</div>
+                <div class="text-11">密友关系</div>
+                <div class="text-12">密友记录</div>
+                <div class="text-13">通过以下途径提升亲密度</div>
+                <div class="text-14">发送学习鼓励</div>
+
+            </div>
+        </div>
+        
+        <div style="padding: 20px; text-align: center; color: #999; font-size: 12px;">
+            <p>生成时间: 2026-04-16 | 数据来源: Figma API</p>
+        </div>
+    </div>
+</body>
+</html>
